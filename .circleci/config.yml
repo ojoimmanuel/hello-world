@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Run Playbook and Configure server
           command: |
-              ansible-playbook -i [inventory-file] [playbook-file]
+              ansible-playbook -i inventory.txt main.yml
             # Your command
 
  # create_infrastructure: 
