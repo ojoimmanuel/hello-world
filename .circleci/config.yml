@@ -1,6 +1,13 @@
 version: 2.1
 # Use a package of configuration called an orb.
 
+
+orbs:
+  # Choose either one of the orbs below
+  # welcome: circleci/welcome-orb@0.4.1
+  aws-cli: circleci/aws-cli@2.0.3
+# Define the jobs we want to run for this project
+
 commands:
    # Exercise - Rollback
    destroy_environment:
@@ -13,11 +20,7 @@ commands:
            command: |
              aws cloudformation delete-stack --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:7}
 
-orbs:
-  # Choose either one of the orbs below
-  # welcome: circleci/welcome-orb@0.4.1
-  aws-cli: circleci/aws-cli@2.0.3
-# Define the jobs we want to run for this project
+
 jobs:
 
     create_infrastructure: 
@@ -80,4 +83,4 @@ workflows:
     jobs:
       - create_infrastructure
       #- configure_infrastructure
-     # - smoke_test
+      - smoke_test
