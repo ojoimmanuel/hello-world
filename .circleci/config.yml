@@ -59,18 +59,9 @@ jobs:
       docker:
         - image: alpine:latest
       steps:
-        - run: apk add --update curl
         - run:
             name: Test job
-            command: |
-              URL="https://blog.udacity.com/"
-              # Test if website exists
-              if curl -s --head ${URL} 
-              then
-                return 1
-              else
-                return 1
-              fi
+            command: return 1
         - destroy_environment
  
 # Sequential workflow
