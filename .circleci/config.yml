@@ -15,17 +15,17 @@ jobs:
       - checkout
       - add_ssh_keys:
               # You can get this ID in the section where you registered the SSH Key
-              fingerprints: ["78:85:89:0e:9f:40:0e:f6:33:b6:00:4e:9e:0a:e0:dd"] 
+          fingerprints: ["78:85:89:0e:9f:40:0e:f6:33:b6:00:4e:9e:0a:e0:dd"] 
       - run:
           name: Install Ansible
           command: |
-              apk add --update ansible
-            # Install Ansible
+            apk add --update ansible
+          # Install Ansible
       - run:
           name: Run Playbook and Configure server
           command: |
-              ansible-playbook -i inventory.txt main.yml
-            # Your command
+            ansible-playbook -i inventory.txt main.yml
+          # Your command
 
  # create_infrastructure: 
   #    docker:
