@@ -7,6 +7,20 @@ orbs:
 # Define the jobs we want to run for this project
 jobs:
 
+    # create_infrastructure: 
+  #    docker:
+   #     - image: amazon/aws-cli
+    #  steps:
+     #   - checkout
+      #  - run:
+       #     name: Create Cloudformation Stack
+        #    command: |
+         #     aws cloudformation deploy \
+          #      --template-file template.yml \
+           #     --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
+            #    --region us-east-1
+
+
   # Exercise: Config and Deployment
   configure_infrastructure: 
     docker:
@@ -27,22 +41,30 @@ jobs:
             ansible-playbook -i inventory.txt main.yml
           # Your command
 
- # create_infrastructure: 
-  #    docker:
-   #     - image: amazon/aws-cli
-    #  steps:
-     #   - checkout
-      #  - run:
-       #     name: Create Cloudformation Stack
-        #    command: |
-         #     aws cloudformation deploy \
-          #      --template-file template.yml \
-           #     --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
-            #    --region us-east-1
+  # Exercise: Smoke Testing
+  smoke_test:
+    docker:
+      - image: alpine:latest
+    steps:
+      - run: apk add --update curl
+      - run:
+          name: smoke test
+          command: |
+            URL="https://blog.udacity.com/"
+          # Test if website exists
+            if curl -s --head ${URL} 
+            then
+              return 0
+            else
+              return 1
+            fi
+
+ 
 # Sequential workflow
 workflows:
   # Name the workflow
   myWorkflow:
     jobs:
       #- create_infrastructure
-      - configure_infrastructure
+      #- configure_infrastructure
+      - smoke_test
