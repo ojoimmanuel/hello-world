@@ -59,9 +59,9 @@ jobs:
       docker:
         - image: alpine:latest
       steps:
-        - run:
-            name: Test job
-            command: return 1
+        #- run:
+         #   name: Test job
+          #  command: return 1
         #- destroy_environment
         - run:
             name: Destroy environment
