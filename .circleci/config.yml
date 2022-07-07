@@ -57,9 +57,9 @@ jobs:
   # Exercise: Smoke Testing
     smoke_test:
       docker:
-        - image: alpine:latest
+        - image: python:3.7-alpine3.11 #alpine:latest
       steps:
-      - run: pip install awscli #apk add --update curl
+      - run: apk add --update curl
       - run:
           name: smoke test
           command: |
