@@ -59,7 +59,7 @@ jobs:
       docker:
         - image: python:3.7-alpine3.11 #alpine:latest
       steps:
-      - run: apk add --update curl
+      - run: pip install awscli #apk add --update curl
       - run:
           name: smoke test
           command: |
